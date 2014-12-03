@@ -1,36 +1,40 @@
 GIT
   remote: https://github.com/benbalter/site-inspector-ruby
-  revision: c1ec9098b79569bd3b88ee2f3c80e066ad11a84b
+  revision: 03ea50bfdf4ccc551add78a40cd0d224aab27540
   specs:
-    site-inspector (0.1.0)
-      dnsruby
-      gman
-      nokogiri
-      public_suffix
-      sniffles
-      typhoeus
+    site-inspector (0.1.1)
+      dnsruby (~> 1.56)
+      gman (~> 4.1)
+      nokogiri (~> 1.6)
+      public_suffix (~> 1.4)
+      sniffles (~> 0.2)
+      typhoeus (~> 0.6)
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
-    coffee-script (2.2.0)
+    coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.0)
-    dnsruby (1.54)
+    coffee-script-source (1.8.0)
+    dnsruby (1.56.0)
     ethon (0.7.1)
       ffi (>= 1.3.0)
-    execjs (2.2.1)
-    ffi (1.9.3)
-    gman (2.1.3)
+    execjs (2.2.2)
+    ffi (1.9.6)
+    gman (4.1.3)
+      iso_country_codes (~> 0.4)
+      naughty_or_nice (~> 0.0.2)
+      swot (~> 0.4)
+    iso_country_codes (0.6.1)
+    mini_portile (0.6.1)
+    naughty_or_nice (0.0.3)
       addressable (~> 2.3)
-      public_suffix (~> 1.4)
-      swot (~> 0.3.1)
-    mini_portile (0.6.0)
-    nokogiri (1.6.2.1)
-      mini_portile (= 0.6.0)
-    public_suffix (1.4.4)
+      public_suffix (>= 1.2)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
+    public_suffix (1.4.6)
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -39,14 +43,15 @@ GEM
       rack
     rack-protection (1.5.3)
       rack
-    rack-ssl-enforcer (0.2.7)
+    rack-ssl-enforcer (0.2.8)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     sniffles (0.2.0)
       nokogiri (~> 1.6.1)
-    swot (0.3.1)
+    swot (0.4.1)
+      naughty_or_nice
       public_suffix
     tilt (1.4.1)
     typhoeus (0.6.9)
