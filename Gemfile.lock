@@ -1,42 +1,66 @@
 GIT
   remote: https://github.com/benbalter/site-inspector-ruby
-  revision: 6f9c48c26ed93c7146498b056507f7c16377ede3
+  revision: 9c72d5d6da93cb23e97c560f516c5dd6d9f3288b
   specs:
-    site-inspector (1.0.0)
+    site-inspector (2.0.0)
+      colorator (~> 0.1)
       dnsruby (~> 1.56)
       gman (~> 4.1)
+      mercenary (~> 0.3)
       nokogiri (~> 1.6)
+      oj (~> 2.11)
       public_suffix (~> 1.4)
       sniffles (~> 0.2)
-      typhoeus (~> 0.6)
+      typhoeus (~> 0.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.7)
-    coffee-script (2.3.0)
+    activemodel (4.2.1)
+      activesupport (= 4.2.1)
+      builder (~> 3.1)
+    activerecord (4.2.1)
+      activemodel (= 4.2.1)
+      activesupport (= 4.2.1)
+      arel (~> 6.0)
+    activesupport (4.2.1)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    addressable (2.3.8)
+    arel (6.0.0)
+    builder (3.2.2)
+    coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
-    colorize (0.7.5)
-    dnsruby (1.57.0)
-    ethon (0.7.2)
+    coffee-script-source (1.9.1.1)
+    colorator (0.1)
+    colorize (0.7.7)
+    dnsruby (1.58.0)
+    ethon (0.7.3)
       ffi (>= 1.3.0)
-    execjs (2.3.0)
-    ffi (1.9.6)
-    gman (4.5.0)
+    execjs (2.5.2)
+    ffi (1.9.8)
+    gman (4.6.3)
       colorize (~> 0.7)
       iso_country_codes (~> 0.6)
       naughty_or_nice (~> 0.0.2)
       swot (~> 0.4.2)
+    i18n (0.7.0)
     iso_country_codes (0.6.1)
+    json (1.8.2)
+    mercenary (0.3.5)
     mini_portile (0.6.2)
+    minitest (5.6.1)
     naughty_or_nice (0.0.3)
       addressable (~> 2.3)
       public_suffix (>= 1.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    public_suffix (1.4.6)
+    oj (2.12.5)
+    public_suffix (1.5.1)
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -46,23 +70,27 @@ GEM
     rack-protection (1.5.3)
       rack
     rack-ssl-enforcer (0.2.8)
-    sinatra (1.4.5)
+    sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      tilt (>= 1.3, < 3)
     sniffles (0.2.0)
       nokogiri (~> 1.6.1)
     swot (0.4.2)
       naughty_or_nice
       public_suffix
-    tilt (1.4.1)
+    thread_safe (0.3.5)
+    tilt (2.0.1)
     typhoeus (0.7.1)
       ethon (>= 0.7.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   rack (= 1.5.2)
   rack-cache
   rack-coffee

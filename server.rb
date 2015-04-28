@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'rack/coffee'
 require 'site-inspector'
+require 'json'
 require 'rack-cache'
+require 'active_support/core_ext/string/inflections'
+require 'tilt/erb'
 
 GLOBAL_CACHE_TIMEOUT = 30
 
@@ -10,21 +13,37 @@ module SiteInspectorServer
 
     use Rack::Coffee, root: 'public', urls: '/assets/javascripts'
 
-    configure :development do
-      use Rack::Cache,
-          :verbose => true,
-          :metastore => "file:cache/meta",
-          :entitystore => "file:cache/body"
-    end
-
-    use Rack::Session::Cookie, {
-      :http_only => true,
-      :secret => ENV['SESSION_SECRET'] || SecureRandom.hex
-    }
-
     configure :production do
       require 'rack-ssl-enforcer'
       use Rack::SslEnforcer
+    end
+
+    helpers do
+
+      def format_key(string)
+        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri]
+        string.to_s.humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { "#{$1}".upcase }
+      end
+
+      def format_key_value(key, value)
+
+        if value.class == TrueClass
+          c = "true"
+        elsif value.class == FalseClass
+          c = "false"
+        else
+          c = ""
+        end
+
+        if value =~ /^https?\:\//
+          value = "<a href=\"#{value}\">#{value}</a>"
+        end
+
+        "<tr>
+          <th>#{ format_key(key) }</th>
+          <td class=\"#{c}\">#{ value }</td>
+        </tr>"
+      end
     end
 
     def render_template(template, locals={})
@@ -38,15 +57,14 @@ module SiteInspectorServer
     get "/domains/:domain.json" do
       cache_control :public, max_age: GLOBAL_CACHE_TIMEOUT
       content_type :json
-      site = SiteInspector.new params[:domain]
-      site.to_json
+      domain = SiteInspector.new params[:domain]
+      domain.to_h.to_json
     end
 
     get "/domains/:domain" do
       cache_control :public, max_age: GLOBAL_CACHE_TIMEOUT
-      site = SiteInspector.new params[:domain]
-      render_template :domain, site: site
+      domain = SiteInspector.inspect params[:domain]
+      render_template :domain, domain: domain, endpoint: domain.canonical_endpoint
     end
-
   end
 end
