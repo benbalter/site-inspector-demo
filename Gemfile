@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.6"
+ruby `cat .ruby-version`.strip
 
 gem 'sinatra'
 gem 'rack-ssl-enforcer'
