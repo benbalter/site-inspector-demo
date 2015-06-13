@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/benbalter/site-inspector-ruby
-  revision: b165a45998fbc7d062a3b842b76e17de551f7605
+  revision: a5a8093868f65d95f88b6c33fc1e186a6eb14381
   specs:
     site-inspector (2.0.0)
       colorator (~> 0.1)
