@@ -5,6 +5,7 @@ require 'json'
 require 'rack-cache'
 require 'active_support/core_ext/string/inflections'
 require 'tilt/erb'
+require 'cgi'
 
 GLOBAL_CACHE_TIMEOUT = 30
 
@@ -25,8 +26,23 @@ module SiteInspectorServer
         string.to_s.humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { "#{$1}".upcase }
       end
 
-      def format_key_value(key, value)
+      def format_value(value)
+        if value.class == String
+          value = CGI.escapeHTML(value)
+        elsif value.class == Hash
+          value = "<ul>" + value.map { |key,value| "<li><strong>#{key}</strong>: #{format_value(value)}</li>" }.join + "</ul>"
+        elsif value.class == Array
+          value = "<ol><li>" + value.map { |value| format_value(value) }.join("</li><li>") + "</li></ul>"
+        end
 
+        if value =~ /^https?\:\//
+          value = "<a href=\"#{value}\">#{value}</a>"
+        end
+
+        value
+      end
+
+      def format_key_value(key, value)
         if value.class == TrueClass
           c = "true"
         elsif value.class == FalseClass
@@ -35,13 +51,9 @@ module SiteInspectorServer
           c = ""
         end
 
-        if value =~ /^https?\:\//
-          value = "<a href=\"#{value}\">#{value}</a>"
-        end
-
         "<tr>
           <th>#{ format_key(key) }</th>
-          <td class=\"#{c}\">#{ value }</td>
+          <td class=\"#{c}\">#{ format_value(value) }</td>
         </tr>"
       end
     end
