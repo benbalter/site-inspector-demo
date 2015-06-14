@@ -5,7 +5,7 @@
   "main": "server.rb",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bundle exec rackup -p $PORT"
+    "start": "rackup -p $PORT"
   },
   "repository": {
     "type": "git",
