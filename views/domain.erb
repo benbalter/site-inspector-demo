@@ -27,8 +27,11 @@
     <div class="col-md-6">
       <h3><%= format_key(check.name) %></h3>
       <table class="table table-striped">
-        <% endpoint.send(check.name).to_h.each do |key,value| %>
-          <%= format_key_value(key, value) %>
+        <% result = endpoint.send(check.name) %>
+        <% if result %> 
+          <% result.to_h.each do |key,value| %>
+           <%= format_key_value(key, value) %>
+          <% end %>
         <% end %>
       </table>
       <% if (index + 1) % 2 == 0 %>
