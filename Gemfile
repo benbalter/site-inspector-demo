@@ -4,7 +4,7 @@ ruby `cat .ruby-version`.strip
 
 gem 'sinatra'
 gem 'rack-ssl-enforcer'
-gem 'rack', "1.5.2"
+gem 'rack', ">= 1.5.2"
 gem 'rack-coffee'
 gem 'rack-cache'
 gem 'activerecord'
