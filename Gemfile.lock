@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/benbalter/site-inspector-ruby
-  revision: 7d78984adc04f52c786009065c53323f30c7fdf9
+  revision: 7fb0acffd48603c17f465dae122bd5d472458999
   specs:
     site-inspector (3.1.1)
       cliver (~> 0.0)
@@ -14,6 +14,7 @@ GIT
       public_suffix (~> 3.0)
       sniffles (~> 0.0)
       typhoeus (~> 1.0)
+      whois (~> 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -89,6 +90,7 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    whois (4.1.0)
     zeitwerk (2.2.2)
 
 PLATFORMS
