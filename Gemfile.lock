@@ -16,6 +16,13 @@ GIT
       typhoeus (~> 1.0)
       whois (~> 5.0)
 
+GIT
+  remote: https://github.com/wa0x6e/sniffles.git
+  revision: bd797d01ead32951dce70b1ad11f4ae5742e3014
+  specs:
+    sniffles (0.2.0)
+      nokogiri (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,15 +58,15 @@ GEM
       concurrent-ruby (~> 1.0)
     iso_country_codes (0.7.8)
     mercenary (0.4.0)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.4.0)
     minitest (5.14.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     naughty_or_nice (2.1.2)
       addressable (~> 2.3)
       public_suffix (>= 3.0)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     oj (3.10.16)
     parallel (1.20.0)
     parser (2.7.2.0)
@@ -97,8 +104,6 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sniffles (0.2.0)
-      nokogiri (~> 1.6.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     typhoeus (1.4.0)
@@ -124,6 +129,7 @@ DEPENDENCIES
   rubocop-performance
   sinatra
   site-inspector!
+  sniffles!
 
 RUBY VERSION
    ruby 2.6.6p146
