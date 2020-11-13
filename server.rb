@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'sinatra'
-require 'rack/coffee'
 require 'site-inspector'
 require 'json'
 require 'rack-cache'
@@ -13,8 +12,6 @@ GLOBAL_CACHE_TIMEOUT = 30
 
 module SiteInspectorServer
   class App < Sinatra::Base
-    use Rack::Coffee, root: 'public', urls: '/assets/javascripts'
-
     configure :production do
       require 'rack-ssl-enforcer'
       use Rack::SslEnforcer
@@ -27,25 +24,25 @@ module SiteInspectorServer
       end
 
       def format_value(value)
-        if value.class == String
+        if value.instance_of?(String)
           value = CGI.escapeHTML(value)
-        elsif value.class == Hash
+        elsif value.instance_of?(Hash)
           value = '<ul>' + value.map { |key, value| "<li><strong>#{key}</strong>: #{format_value(value)}</li>" }.join + '</ul>'
-        elsif value.class == Array
+        elsif value.instance_of?(Array)
           value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ul>'
-        elsif value.class == Whois::Record
+        elsif value.instance_of?(Whois::Record)
           value = "<pre>#{CGI.escapeHTML(value.to_s)}</pre>"
         end
 
-        value = "<a href=\"#{value}\">#{value}</a>" if value =~ %r{^https?\:/}
+        value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value)
 
         value
       end
 
       def format_key_value(key, value)
-        c = if value.class == TrueClass
+        c = if value.instance_of?(TrueClass)
               'true'
-            elsif value.class == FalseClass
+            elsif value.instance_of?(FalseClass)
               'false'
             else
               ''
