@@ -66,7 +66,7 @@ module SiteInspectorServer
     get '/domains/:domain.json' do
       cache_control :public, max_age: GLOBAL_CACHE_TIMEOUT
       content_type :json
-      domain = SiteInspector.new params[:domain]
+      domain = SiteInspector.new Addressable::URI.parse(params[:domain]).host
       domain.to_h.to_json
     end
 
