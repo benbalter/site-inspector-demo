@@ -1,5 +1,5 @@
 $(function() {
-  return $("#form").submit(function(e) {
+  $("#form").submit(function(e) {
     var domain;
     e.preventDefault();
     domain = $("#domain").val();

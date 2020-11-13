@@ -1,4 +1,10 @@
 <h2><%= domain.host %></h2>
+<% if urlscan %>
+  <p>
+    <a href="<%= urlscan["result"] %>">urlscan.io results</a> | 
+    <a href="https://urlscan.io/screenshots/<%= urlscan["uuid"] %>.png">Screenshot</a>
+  </p>
+<% end %>
 
 <div class="row">
   <div class="col-md-6">

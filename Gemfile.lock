@@ -1,11 +1,12 @@
 GIT
   remote: https://github.com/benbalter/site-inspector.git
-  revision: 66e3633bb6888295a4f2814b7f6133526a833ea5
+  revision: 366188fd1d0005593cd2261a48e49333f85a3127
   specs:
     site-inspector (3.1.1)
       cliver (~> 0.0)
       colorator (~> 1.1)
       dnsruby (~> 1.0)
+      dotenv (~> 2.0)
       gman (~> 7.0, >= 7.0.4)
       mercenary (~> 0.0)
       nokogiri (~> 1.0)
@@ -14,6 +15,7 @@ GIT
       public_suffix (~> 4.0)
       sniffles (~> 0.0)
       typhoeus (~> 1.0)
+      urlscan (~> 0.6)
       whois (~> 5.0)
 
 GIT
@@ -46,6 +48,7 @@ GEM
     concurrent-ruby (1.1.7)
     dnsruby (1.61.5)
       simpleidn (~> 0.1)
+    dotenv (2.7.6)
     ethon (0.12.0)
       ffi (>= 1.3.0)
     ffi (1.13.1)
@@ -104,6 +107,7 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
+    thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     typhoeus (1.4.0)
@@ -114,6 +118,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
+    urlscan (0.6.0)
+      thor (~> 1.0)
     whois (5.0.1)
     zeitwerk (2.4.1)
 
@@ -122,6 +128,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  dotenv
   rack (>= 1.5.2)
   rack-cache
   rack-ssl-enforcer
@@ -130,6 +137,7 @@ DEPENDENCIES
   sinatra
   site-inspector!
   sniffles!
+  urlscan
 
 RUBY VERSION
    ruby 2.6.6p146

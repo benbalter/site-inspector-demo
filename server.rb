@@ -7,6 +7,8 @@ require 'rack-cache'
 require 'active_support/core_ext/string/inflections'
 require 'tilt/erb'
 require 'cgi'
+require 'urlscan'
+require 'dotenv/load'
 
 GLOBAL_CACHE_TIMEOUT = 30
 
@@ -58,6 +60,16 @@ module SiteInspectorServer
     def render_template(template, locals = {})
       halt erb template, layout: :layout, locals: locals
     end
+    
+    def urlscan_client
+      @urlscan_client ||= UrlScan::API.new
+    end
+
+    def urlscan(domain)
+      urlscan_client.submit(domain.canonical_endpoint, false)
+    rescue UrlScan::ProcessingError
+      nil
+    end
 
     get '/' do
       render_template :index
@@ -73,7 +85,7 @@ module SiteInspectorServer
     get '/domains/:domain' do
       cache_control :public, max_age: GLOBAL_CACHE_TIMEOUT
       domain = SiteInspector.inspect params[:domain]
-      render_template :domain, domain: domain, endpoint: domain.canonical_endpoint
+      render_template :domain, domain: domain, endpoint: domain.canonical_endpoint, urlscan: urlscan(domain)
     end
   end
 end
