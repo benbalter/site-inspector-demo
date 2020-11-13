@@ -34,7 +34,7 @@ module SiteInspectorServer
           value = "<pre>#{CGI.escapeHTML(value.to_s)}</pre>"
         end
 
-        value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value)
+        value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value.to_s)
 
         value
       end
