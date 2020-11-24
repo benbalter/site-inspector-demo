@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/benbalter/site-inspector.git
-  revision: 91a00c1d8446abea4ec1636f4a9c2fcae1054f06
+  revision: b4dfd99f104f9e48fc4678d4e30a4e17f00ae587
   specs:
     site-inspector (3.2.0)
       cliver (~> 0.0)
@@ -9,6 +9,7 @@ GIT
       dotenv (~> 2.0)
       gman (~> 7.0, >= 7.0.4)
       mercenary (~> 0.0)
+      naughty_or_nice (~> 2.0)
       nokogiri (~> 1.0)
       oj (~> 3.0)
       parallel (~> 1.0)
@@ -93,7 +94,7 @@ GEM
       rubocop-ast (>= 1.1.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.1.1)
+    rubocop-ast (1.2.0)
       parser (>= 2.7.1.5)
     rubocop-performance (1.9.0)
       rubocop (>= 0.90.0, < 2.0)
