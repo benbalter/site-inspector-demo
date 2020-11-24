@@ -22,7 +22,7 @@ module SiteInspectorServer
     helpers do
       def format_key(string)
         abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri]
-        string.to_s.gsub(/^x-/, '').humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
+        string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
       end
 
       def format_value(value)
