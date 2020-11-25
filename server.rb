@@ -21,19 +21,21 @@ module SiteInspectorServer
 
     helpers do
       def format_key(string)
-        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri id tld trd sld]
+        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri id tld trd sld ssl tls crm paas]
         string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
       end
 
       def format_value(value)
+        puts value.inspect
+
         if value.instance_of?(String)
           value = CGI.escapeHTML(value)
         elsif value.instance_of?(Hash)
           value = '<ul>' + value.map { |key, value| "<li><span class='font-weight-bold'>#{key}</span>: #{format_value(value)}</li>" }.join + '</ul>'
+        elsif value.instance_of?(Array) && value.length == 1
+          value = format_value(value[0])
         elsif value.instance_of?(Array)
           value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ol>'
-        elsif value.instance_of?(Whois::Record)
-          value = "<pre>#{CGI.escapeHTML(value.to_s)}</pre>"
         end
 
         value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value.to_s)
