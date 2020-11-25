@@ -21,13 +21,11 @@ module SiteInspectorServer
 
     helpers do
       def format_key(string)
-        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri id tld trd sld ssl tls crm paas]
+        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri id tld trd sld ssl tls crm paas whois]
         string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
       end
 
       def format_value(value)
-        puts value.inspect
-
         if value.instance_of?(String)
           value = CGI.escapeHTML(value)
         elsif value.instance_of?(Hash)
@@ -56,6 +54,10 @@ module SiteInspectorServer
           <th>#{format_key(key)}</th>
           <td class=\"#{c}\">#{format_value(value)}</td>
         </tr>"
+      end
+
+      def slugify(word)
+        word.to_s.downcase.tr(' ', '-')
       end
     end
 

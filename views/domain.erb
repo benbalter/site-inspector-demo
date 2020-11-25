@@ -10,9 +10,17 @@
   </ul>
 <% end %>
 
+<ul class="list-inline text-center">
+<% SiteInspector::Endpoint.checks.map { |c| c.to_s.split("::").last }.each do |check| %>
+  <li class="list-inline-item mx-2">
+    <a href="#<%= slugify(check) %>"><%= format_key(check) %></a>
+  </li>
+<% end %>
+</ul>
+
 <div class="row row-cols-2">
   <div class="col">
-    <h3>Domain</h3>
+    <h3 id="domain">Domain</h3>
     <table class="table table-striped">
       <% domain.to_h.reject { |k,v| v.is_a?(Hash) }.each do |key, value| %>
         <%= format_key_value(key, value) %>
@@ -21,7 +29,7 @@
   </div>
 
   <div class="col">
-    <h3>Canonical Endpoint</h3>
+    <h3 id="canonical-endpoint">Canonical Endpoint</h3>
     <table class="table table-striped">
       <% endpoint.to_h.reject { |k,v| v.is_a?(Hash) }.each do |key, value| %>
         <%= format_key_value(key, value) %>
@@ -33,7 +41,7 @@
     <% result = endpoint.send(check.name).to_h %>
     <% next if result == {} %>
     <div class="col pt-4">
-      <h3><%= format_key(check.name) %></h3>
+      <h3 id="<%= slugify(check.name) %>%"><%= format_key(check.name) %></h3>
       <table class="table table-striped">
         <% if result %> 
           <% result.each do |key,value| %>
