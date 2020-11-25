@@ -29,9 +29,9 @@ module SiteInspectorServer
         if value.instance_of?(String)
           value = CGI.escapeHTML(value)
         elsif value.instance_of?(Hash)
-          value = '<ul>' + value.map { |key, value| "<li><strong>#{key}</strong>: #{format_value(value)}</li>" }.join + '</ul>'
+          value = '<ul>' + value.map { |key, value| "<li><span class='font-weight-bold'>#{key}</span>: #{format_value(value)}</li>" }.join + '</ul>'
         elsif value.instance_of?(Array)
-          value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ul>'
+          value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ol>'
         elsif value.instance_of?(Whois::Record)
           value = "<pre>#{CGI.escapeHTML(value.to_s)}</pre>"
         end
