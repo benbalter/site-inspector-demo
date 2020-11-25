@@ -1,9 +1,7 @@
-$(function() {
-  $("#form").submit(function(e) {
-    var domain;
-    e.preventDefault();
-    domain = $("#domain").val();
-    document.location = "/domains/" + domain;
-    return false;
-  });
+var form = document.getElementById('form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  domain = document.getElementById('domain').value
+  document.location = "/domains/" + domain;
+  return false;
 });

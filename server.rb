@@ -43,9 +43,9 @@ module SiteInspectorServer
 
       def format_key_value(key, value)
         c = if value.instance_of?(TrueClass)
-              'true'
+              'text-success'
             elsif value.instance_of?(FalseClass)
-              'false'
+              'text-danger'
             else
               ''
             end

@@ -1,13 +1,17 @@
-<h2><%= domain.host %></h2>
+<h2 class="text-center"><%= domain.host %></h2>
 <% if urlscan %>
-  <p>
-    <a href="<%= urlscan["result"] %>">urlscan.io results</a> | 
-    <a href="https://urlscan.io/screenshots/<%= urlscan["uuid"] %>.png">Screenshot</a>
-  </p>
+  <ul class="list-inline text-center">
+    <li class="list-inline-item mx-2">
+      <a href="<%= urlscan["result"] %>">urlscan.io results</a>
+    </li>      
+    <li class="list-inline-item mx-2">
+      <a href="https://urlscan.io/screenshots/<%= urlscan["uuid"] %>.png">Screenshot</a>
+    </li>
+  </ul>
 <% end %>
 
-<div class="row">
-  <div class="col-md-6">
+<div class="row row-cols-2">
+  <div class="col">
     <h3>Domain</h3>
     <table class="table table-striped">
       <% domain.to_h.reject { |k,v| v.is_a?(Hash) }.each do |key, value| %>
@@ -16,38 +20,31 @@
     </table>
   </div>
 
-  <div class="col-md-6">
+  <div class="col">
     <h3>Canonical Endpoint</h3>
     <table class="table table-striped">
-      <table class="table table-striped">
-        <% endpoint.to_h.reject { |k,v| v.is_a?(Hash) }.each do |key, value| %>
-          <%= format_key_value(key, value) %>
-        <% end %>
-      </table>
+      <% endpoint.to_h.reject { |k,v| v.is_a?(Hash) }.each do |key, value| %>
+        <%= format_key_value(key, value) %>
+      <% end %>
     </table>
   </div>
-</div>
 
-<div class="row">
-    <% SiteInspector::Endpoint.checks.each_with_index do |check, index| %>
-    <div class="col-md-6">
+  <% SiteInspector::Endpoint.checks.each_with_index do |check, index| %>
+    <% result = endpoint.send(check.name).to_h %>
+    <% next if result == {} %>
+    <div class="col pt-4">
       <h3><%= format_key(check.name) %></h3>
       <table class="table table-striped">
-        <% result = endpoint.send(check.name).to_h %>
         <% if result %> 
           <% result.each do |key,value| %>
-           <%= format_key_value(key, value) %>
+            <%= format_key_value(key, value) %>
           <% end %>
         <% end %>
       </table>
-      <% if (index + 1) % 2 == 0 %>
-        </div>
-        <div class="row">
-      <% end %>
     </div>
-    <% end %>
+  <% end %>
 </div>
 
-<div class="have_another">
+<div class="text-center lead">
   <a href="/">Check another domain?</a>
 </div>
