@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/benbalter/site-inspector.git
-  revision: da1775e8a87a5a1bc3fc976a31527a261e6393b0
+  revision: 015a11c39f70ca23cb1594ebc7515fa191d1b573
   specs:
     site-inspector (3.2.0)
       cliver (~> 0.0)
