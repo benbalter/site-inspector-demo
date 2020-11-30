@@ -12,7 +12,7 @@ gem 'rack-ssl-enforcer'
 gem 'rubocop'
 gem 'rubocop-performance'
 gem 'sinatra'
-if RUBY_PLATFORM.match?(/darwin/)
+if ENV['LOCAL']
   gem 'site-inspector', path: '../site-inspector'
 else
   gem 'site-inspector', github: 'benbalter/site-inspector'

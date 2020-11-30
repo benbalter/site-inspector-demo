@@ -1,12 +1,6 @@
 GIT
-  remote: https://github.com/wa0x6e/sniffles.git
-  revision: bd797d01ead32951dce70b1ad11f4ae5742e3014
-  specs:
-    sniffles (0.2.0)
-      nokogiri (~> 1.6)
-
-PATH
-  remote: ../site-inspector
+  remote: https://github.com/benbalter/site-inspector.git
+  revision: da1775e8a87a5a1bc3fc976a31527a261e6393b0
   specs:
     site-inspector (3.2.0)
       cliver (~> 0.0)
@@ -24,6 +18,13 @@ PATH
       typhoeus (~> 1.0)
       urlscan (~> 0.6)
       whois (~> 5.0)
+
+GIT
+  remote: https://github.com/wa0x6e/sniffles.git
+  revision: bd797d01ead32951dce70b1ad11f4ae5742e3014
+  specs:
+    sniffles (0.2.0)
+      nokogiri (~> 1.6)
 
 GEM
   remote: https://rubygems.org/
