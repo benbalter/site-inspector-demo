@@ -38,14 +38,15 @@
   </div>
 
   <% SiteInspector::Endpoint.checks.each_with_index do |check, index| %>
-    <% result = endpoint.send(check.name).to_h %>
+    <% check = endpoint.send(check.name) %>
+    <% result = check.to_h %>
     <% next if result == {} %>
     <div class="col pt-4">
-      <h3 id="<%= slugify(check.name) %>%"><%= format_key(check.name) %></h3>
+      <h3 id="<%= slugify(check.name) %>"><%= format_key(check.name) %></h3>
       <table class="table table-striped">
         <% if result %> 
           <% result.each do |key,value| %>
-            <%= format_key_value(key, value) %>
+            <%= format_key_value(key, value, check) %>
           <% end %>
         <% end %>
       </table>

@@ -14,6 +14,10 @@ GLOBAL_CACHE_TIMEOUT = 30
 
 module SiteInspectorServer
   class App < Sinatra::Base
+    ABBREVIATIONS = %w[
+      acme cdn crm dns dnssec dnt hsts http https id ip ipv6 paas pki sld ssl tld tls trd txt uri url whois www xml xss
+    ].freeze
+
     configure :production do
       require 'rack-ssl-enforcer'
       use Rack::SslEnforcer
@@ -21,19 +25,20 @@ module SiteInspectorServer
 
     helpers do
       def format_key(string)
-        abbvs = %w[www https hsts url dnssec ipv6 cdn xml txt ip xss dns uri id tld trd sld ssl tls crm paas whois]
-        string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{abbvs.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
+        string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{ABBREVIATIONS.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
       end
 
       def format_value(value)
         if value.instance_of?(String)
-          value = CGI.escapeHTML(value)
+          value = CGI.escapeHTML(value.to_s)
         elsif value.instance_of?(Hash)
           value = '<ul>' + value.map { |key, value| "<li><span class='font-weight-bold'>#{key}</span>: #{format_value(value)}</li>" }.join + '</ul>'
         elsif value.instance_of?(Array) && value.length == 1
           value = format_value(value[0])
         elsif value.instance_of?(Array)
           value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ol>'
+        else
+          value = value.to_s
         end
 
         value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value.to_s)
@@ -41,7 +46,7 @@ module SiteInspectorServer
         value
       end
 
-      def format_key_value(key, value)
+      def format_key_value(key, value, check = nil)
         c = if value.instance_of?(TrueClass)
               'text-success'
             elsif value.instance_of?(FalseClass)
@@ -50,10 +55,19 @@ module SiteInspectorServer
               ''
             end
 
-        "<tr>
-          <th>#{format_key(key)}</th>
-          <td class=\"#{c}\">#{format_value(value)}</td>
-        </tr>"
+        output = '<tr>'.dup
+        output << "<th>#{format_key(key)}</th>"
+        output << "<td class=\"#{c}\">"
+
+        uri = check&.uri_for(key)
+        output << "<a href=\"#{uri}\" class=\"#{c}\">" if value == true && uri
+
+        output << format_value(value)
+
+        output << '</a>' if value == true && uri
+        output << '</td>'
+        output << '</tr>'
+        output
       end
 
       def slugify(word)

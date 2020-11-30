@@ -1,6 +1,12 @@
 GIT
-  remote: https://github.com/benbalter/site-inspector.git
-  revision: e8483520b9c03172e08dad50797076c731273a4f
+  remote: https://github.com/wa0x6e/sniffles.git
+  revision: bd797d01ead32951dce70b1ad11f4ae5742e3014
+  specs:
+    sniffles (0.2.0)
+      nokogiri (~> 1.6)
+
+PATH
+  remote: ../site-inspector
   specs:
     site-inspector (3.2.0)
       cliver (~> 0.0)
@@ -18,13 +24,6 @@ GIT
       typhoeus (~> 1.0)
       urlscan (~> 0.6)
       whois (~> 5.0)
-
-GIT
-  remote: https://github.com/wa0x6e/sniffles.git
-  revision: bd797d01ead32951dce70b1ad11f4ae5742e3014
-  specs:
-    sniffles (0.2.0)
-      nokogiri (~> 1.6)
 
 GEM
   remote: https://rubygems.org/
@@ -83,9 +82,9 @@ GEM
       rack
     rack-ssl-enforcer (0.2.9)
     rainbow (3.0.0)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.0)
     rexml (3.2.4)
-    rubocop (1.4.1)
+    rubocop (1.4.2)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -96,7 +95,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (1.2.0)
       parser (>= 2.7.1.5)
-    rubocop-performance (1.9.0)
+    rubocop-performance (1.9.1)
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.10.1)
@@ -122,7 +121,7 @@ GEM
     urlscan (0.6.0)
       thor (~> 1.0)
     whois (5.0.1)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
