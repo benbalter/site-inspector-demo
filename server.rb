@@ -25,21 +25,25 @@ module SiteInspectorServer
 
     helpers do
       def format_key(string)
-        string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{ABBREVIATIONS.join("|")})\b/i) { Regexp.last_match(1).to_s.upcase }
+        string.to_s.gsub(/^x-/, '').tr('-', ' ').humanize.gsub(/\b(#{ABBREVIATIONS.join("|")})\b/i) do
+          Regexp.last_match(1).to_s.upcase
+        end
       end
 
       def format_value(value)
-        if value.instance_of?(String)
-          value = CGI.escapeHTML(value.to_s)
-        elsif value.instance_of?(Hash)
-          value = '<ul>' + value.map { |key, value| "<li><span class='font-weight-bold'>#{key}</span>: #{format_value(value)}</li>" }.join + '</ul>'
-        elsif value.instance_of?(Array) && value.length == 1
-          value = format_value(value[0])
-        elsif value.instance_of?(Array)
-          value = '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ol>'
-        else
-          value = value.to_s
-        end
+        value = if value.instance_of?(String)
+                  CGI.escapeHTML(value.to_s)
+                elsif value.instance_of?(Hash)
+                  '<ul>' + value.map do |key, value|
+                             "<li><span class='font-weight-bold'>#{key}</span>: #{format_value(value)}</li>"
+                           end.join + '</ul>'
+                elsif value.instance_of?(Array) && value.length == 1
+                  format_value(value[0])
+                elsif value.instance_of?(Array)
+                  '<ol><li>' + value.map { |value| format_value(value) }.join('</li><li>') + '</li></ol>'
+                else
+                  value.to_s
+                end
 
         value = "<a href=\"#{value}\">#{value}</a>" if %r{^https?:/}.match?(value.to_s)
 
