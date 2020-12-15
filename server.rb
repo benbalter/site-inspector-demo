@@ -15,7 +15,7 @@ GLOBAL_CACHE_TIMEOUT = 30
 module SiteInspectorServer
   class App < Sinatra::Base
     ABBREVIATIONS = %w[
-      acme cdn crm dns dnssec dnt hsts http https id ip ipv6 json paas pki sld ssl tld tls trd txt uri url whois www xml xss
+      acme cdn cms ui crm dns dnssec dnt hsts http https id ip ipv6 json paas pki sld ssl tld tls trd txt uri url whois www xml xss
     ].freeze
 
     configure :production do
