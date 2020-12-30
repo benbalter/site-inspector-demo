@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/benbalter/site-inspector.git
-  revision: f81a0f4ac67798c1ada59e99ecd62e6f6085dee7
+  revision: 516c06dd796e46d28462395a93bf4dd2ce342c5a
   specs:
     site-inspector (3.2.0)
       activesupport
@@ -72,9 +72,9 @@ GEM
       public_suffix (>= 3.0)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    oj (3.10.17)
+    oj (3.10.18)
     parallel (1.20.1)
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     public_suffix (4.0.6)
     rack (2.2.3)
@@ -84,9 +84,9 @@ GEM
       rack
     rack-ssl-enforcer (0.2.9)
     rainbow (3.0.0)
-    regexp_parser (2.0.1)
+    regexp_parser (2.0.3)
     rexml (3.2.4)
-    rubocop (1.6.1)
+    rubocop (1.7.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
