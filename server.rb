@@ -34,7 +34,7 @@ module SiteInspectorServer
     end
 
     def urlscan(domain)
-      urlscan_client.submit(domain.canonical_endpoint, false)
+      urlscan_client.submit(domain.canonical_endpoint, visibility: 'private')
     rescue UrlScan::ProcessingError, UrlScan::RateLimited
       nil
     end
