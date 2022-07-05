@@ -2,8 +2,6 @@
 
 source 'https://rubygems.org'
 
-ruby `cat .ruby-version`.strip
-
 gem 'activerecord'
 gem 'dotenv'
 gem 'rack', '>= 1.5.2'

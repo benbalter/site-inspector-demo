@@ -1,0 +1,10 @@
+services:
+  site-inspector:
+    domainname: site-inspector
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports: 
+      - 9292:9292
+    environment:
+      - RACK_ENV=production
