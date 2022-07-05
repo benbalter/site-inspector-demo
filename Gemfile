@@ -10,6 +10,8 @@ gem 'rack-ssl-enforcer'
 gem 'rubocop'
 gem 'rubocop-performance'
 gem 'sinatra'
+gem 'rack-ecg'
+
 if ENV['LOCAL']
   gem 'site-inspector', path: '../site-inspector'
 else

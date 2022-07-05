@@ -8,6 +8,7 @@ require 'tilt/erb'
 require 'cgi'
 require 'urlscan'
 require 'dotenv/load'
+require 'rack/ecg'
 
 GLOBAL_CACHE_TIMEOUT = 30
 
@@ -17,6 +18,10 @@ module SiteInspectorServer
       require 'rack-ssl-enforcer'
       use Rack::SslEnforcer
     end
+
+    use Rack::ECG, checks: [
+      [:static, { name: 'environment', value: Sinatra::Application.environment }],
+    ]
 
     helpers SiteInspector::Formatter
     helpers do
