@@ -18,4 +18,5 @@ else
   gem 'site-inspector', github: 'benbalter/site-inspector'
 end
 gem 'sniffles', github: 'wa0x6e/sniffles'
+gem 'gman', github: 'benbalter/gman'
 gem 'urlscan'
