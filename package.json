@@ -18,7 +18,7 @@
   "homepage": "https://github.com/benbalter/site-inspector-demo#readme",
   "dependencies": {
     "pa11y": "^5.0.0",
-    "wappalyzer": "^6.10.38"
+    "wappalyzer": "^6.10.39"
   },
   "engines": {
     "node": "14.x",
