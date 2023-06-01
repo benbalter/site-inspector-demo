@@ -4,13 +4,14 @@ source 'https://rubygems.org'
 
 gem 'activerecord'
 gem 'dotenv'
-gem 'rack', '>= 1.5.2'
+gem 'rack'
 gem 'rack-cache'
 gem 'rack-ssl-enforcer'
 
-gem 'sinatra'
+gem 'sinatra', ">= 2.0.0"
 gem 'rack-ecg'
 gem 'puma'
+
 
 if ENV['LOCAL']
   gem 'site-inspector', path: '../site-inspector'

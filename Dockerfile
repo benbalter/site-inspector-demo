@@ -1,6 +1,6 @@
 FROM ruby:3
 
-ENV PORT=80
+ENV PORT=9292
 ENV RACK_ENV=production
 
 EXPOSE ${PORT}
